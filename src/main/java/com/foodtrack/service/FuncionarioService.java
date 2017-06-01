@@ -19,25 +19,25 @@ public class FuncionarioService {
 
 	@Autowired
 	@Qualifier("fake")
-	private GenericDao<Funcionario> funcionarioDAO;
+	private GenericDao<Funcionario> funcionarioDao;
 	
 	public Collection<Funcionario> getAllFuncionarios() {
-		return this.funcionarioDAO.getAll();
+		return this.funcionarioDao.getAll();
 	}
 	
 	public Funcionario getFuncionarioById(int id) {
-		return (Funcionario) this.funcionarioDAO.getById(id);
+		return (Funcionario) this.funcionarioDao.getById(id);
 	}
 
 	public void removeFuncionarioById(int id) {
-		this.funcionarioDAO.removeById(id);
+		this.funcionarioDao.removeById(id);
 	}
 	
 	public void updateFuncionario(Funcionario funcionario) {
-		this.funcionarioDAO.update(funcionario);
+		this.funcionarioDao.update(funcionario);
 	}
 
 	public void insertFuncionario(Funcionario funcionario) {
-		this.funcionarioDAO.insert(funcionario);
+		this.funcionarioDao.insert(funcionario);
 	}
 }

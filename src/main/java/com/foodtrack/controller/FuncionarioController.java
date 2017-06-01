@@ -22,26 +22,34 @@ public class FuncionarioController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public Collection<Funcionario> getAllFuncionarios() {
+		
 		return funcionarioService.getAllFuncionarios();
 	}
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public Funcionario getFuncionarioById(@PathVariable("id") int id) {
+		
 		return funcionarioService.getFuncionarioById(id);
 	}
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
-	public void deleteFuncionarioById(@PathVariable("id") int id) {
+	public Collection<Funcionario> deleteFuncionarioById(@PathVariable("id") int id) {
+		
 		funcionarioService.removeFuncionarioById(id);
+		return getAllFuncionarios();
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void uptadeFuncionario(@RequestBody Funcionario funcionario) {
-		funcionarioService.updateFuncionario(funcionario);;
+	public Collection<Funcionario> uptadeFuncionario(@RequestBody Funcionario funcionario) {
+		
+		funcionarioService.updateFuncionario(funcionario);
+		return getAllFuncionarios();
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void insertFuncionario(@RequestBody Funcionario funcionario) {
+	public Collection<Funcionario> insertFuncionario(@RequestBody Funcionario funcionario) {
+		
 		funcionarioService.insertFuncionario(funcionario);
+		return getAllFuncionarios();
 	}
 }
