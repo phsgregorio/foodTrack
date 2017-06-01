@@ -7,26 +7,23 @@ package com.foodtrack.entity;
  */
 public class Funcionario {
 
-	private Integer id;
+	private int id;
 	private String nome;
 	private String ativo;
 
-	public Funcionario(String nome, String ativo) {
-		this.nome = nome;
-		this.ativo = ativo;
-	}
-	
-	public Funcionario(Integer id, String nome, String ativo) {
+	public Funcionario() { }
+
+	public Funcionario(int id, String nome, String ativo) {
 		this.id = id;
 		this.nome = nome;
 		this.ativo = ativo;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
