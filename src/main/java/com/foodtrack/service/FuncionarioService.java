@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.foodtrack.dao.FuncionarioDAO;
+import com.foodtrack.dao.GenericDao;
 import com.foodtrack.entity.Funcionario;
 
 /**
@@ -19,25 +19,25 @@ public class FuncionarioService {
 
 	@Autowired
 	@Qualifier("fake")
-	private FuncionarioDAO funcionarioDAO;
+	private GenericDao<Funcionario> funcionarioDAO;
 	
 	public Collection<Funcionario> getAllFuncionarios() {
-		return this.funcionarioDAO.getAllFuncionarios();
+		return this.funcionarioDAO.getAll();
 	}
 	
 	public Funcionario getFuncionarioById(int id) {
-		return this.funcionarioDAO.getFuncionarioById(id);
+		return (Funcionario) this.funcionarioDAO.getById(id);
 	}
 
 	public void removeFuncionarioById(int id) {
-		this.funcionarioDAO.removeFuncionarioById(id);
+		this.funcionarioDAO.removeById(id);
 	}
 	
 	public void updateFuncionario(Funcionario funcionario) {
-		this.funcionarioDAO.updateFuncionario(funcionario);
+		this.funcionarioDAO.update(funcionario);
 	}
 
 	public void insertFuncionario(Funcionario funcionario) {
-		this.funcionarioDAO.insertFuncionario(funcionario);
+		this.funcionarioDAO.insert(funcionario);
 	}
 }

@@ -9,34 +9,34 @@ import com.foodtrack.entity.Funcionario;
 
 @Repository
 @Qualifier("h2")
-public class FuncionarioH2Dao implements FuncionarioDAO {
+public class FuncionarioH2Dao implements GenericDao<Funcionario> {
 
 	@Override
-	public Collection<Funcionario> getAllFuncionarios() {
+	public Collection<Funcionario> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Funcionario getFuncionarioById(int id) {
+	public Funcionario getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void removeFuncionarioById(int id) {
+	public void removeById(int id) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void updateFuncionario(Funcionario funcionario) {
+	public void update(Funcionario funcionario) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void insertFuncionario(Funcionario funcionario) {
+	public void insert(Funcionario funcionario) {
 		// TODO Auto-generated method stub
 
 	}
