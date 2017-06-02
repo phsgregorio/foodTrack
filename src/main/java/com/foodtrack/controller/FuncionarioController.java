@@ -47,7 +47,7 @@ public class FuncionarioController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Collection<Funcionario> insertFuncionario(@RequestBody Funcionario funcionario) {
+	public Collection<Funcionario> insertFuncionario(@RequestBody Funcionario funcionario) throws Exception {
 		
 		funcionarioService.insertFuncionario(funcionario);
 		return getAllFuncionarios();

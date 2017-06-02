@@ -45,7 +45,7 @@ public class RestauranteController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Collection<Restaurante> insertRestaurante(@RequestBody Restaurante restaurante) {
+	public Collection<Restaurante> insertRestaurante(@RequestBody Restaurante restaurante) throws Exception {
 		
 		restauranteService.insertRestaurante(restaurante);
 		return getAllRestaurantes();

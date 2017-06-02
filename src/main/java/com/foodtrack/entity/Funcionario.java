@@ -1,11 +1,9 @@
 package com.foodtrack.entity;
 
-/**
- * TODO pedro.gregorio
- * @author First Place
- *
- */
 public class Funcionario {
+	
+	public static String ATIVO = "ativo";
+	public static String INATIVO = "inativo";
 
 	private int id;
 	private String nome;
@@ -46,5 +44,9 @@ public class Funcionario {
 	@Override
 	public String toString() {
 		return getId() + ", " + getNome() + ", " + getAtivo();
+	}
+
+	public boolean isAtivo() {
+		return getAtivo().equals(ATIVO);
 	}
 }

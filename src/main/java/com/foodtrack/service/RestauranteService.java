@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.foodtrack.dao.GenericDao;
 import com.foodtrack.entity.Restaurante;
@@ -37,7 +38,15 @@ public class RestauranteService {
 		this.restauranteDao.update(restaurante);
 	}
 
-	public void insertRestaurante(Restaurante restaurante) {
-		this.restauranteDao.insert(restaurante);
+	public void insertRestaurante(Restaurante restaurante) throws Exception {
+		
+		if (!StringUtils.isEmpty(restaurante.getNome()) && 
+				!StringUtils.isEmpty(restaurante.getEndereco())) {
+			
+			this.restauranteDao.insert(restaurante);
+		} else {
+			
+			throw new Exception("Os parâmetros {nome} e {endereco} devem ser devidamente informados.");
+		}
 	}
 }
