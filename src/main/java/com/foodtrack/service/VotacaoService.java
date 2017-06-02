@@ -5,7 +5,6 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import com.foodtrack.dao.VotacaoDao;
 import com.foodtrack.entity.Restaurante;
@@ -32,8 +31,8 @@ public class VotacaoService {
 		return votacaoDao.getAllByDate(data);
 	}
 	
-	public boolean isRestauranteJaEscolhido(Restaurante restaurante) {
-		return votacaoDao.isRestauranteJaEscolhido(restaurante);
+	public boolean isRestauranteJaEscolhido(Restaurante restaurante, String data) {
+		return votacaoDao.isRestauranteJaEscolhido(restaurante, data);
 	}
 	
 	public Votacao getRestauranteDia(String data) {
@@ -42,18 +41,6 @@ public class VotacaoService {
 	
 	public Votacao getVotacaoByRestauranteData(int idRestaurante, String data) {
 		return votacaoDao.getVotacaoByRestauranteData(idRestaurante, data);
-	}
-
-	public void insertVotacao(Votacao votacao) throws Exception {
-		
-		if (votacao.getIdRestaurante()!=0 && 
-				!StringUtils.isEmpty(votacao.getDataVotacao())) {
-			
-			this.votacaoDao.insert(votacao);
-		} else {
-			
-			throw new Exception("O Objeto Votacao deve ter as propriedades {id}, {idRestaurante} e {dataVotacao} devidamente informadas.");
-		}
 	}
 
 	public void insertVotacao(VotoFuncionario votoFuncionario) throws Exception {
@@ -72,7 +59,7 @@ public class VotacaoService {
 				this.votacaoDao.update(votacao);
 			}
 		} else {
-			throw new Exception("Os parâmetros idRestaurante e dataVotacao devem ser devidamente informados");
+			throw new Exception("As propriedades do objeto VotoFuncionario {idRestaurante} e {dataVotacao} devem ser devidamente informadas.");
 		}
 	}
 }

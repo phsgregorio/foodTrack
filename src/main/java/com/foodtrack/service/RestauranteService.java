@@ -34,19 +34,30 @@ public class RestauranteService {
 		this.restauranteDao.removeById(id);
 	}
 	
-	public void updateRestaurante(Restaurante restaurante) {
-		this.restauranteDao.update(restaurante);
-	}
-
-	public void insertRestaurante(Restaurante restaurante) throws Exception {
+	public boolean isValid(Restaurante restaurante) throws Exception {
+		
+		boolean valid = false;
 		
 		if (!StringUtils.isEmpty(restaurante.getNome()) && 
 				!StringUtils.isEmpty(restaurante.getEndereco())) {
 			
-			this.restauranteDao.insert(restaurante);
+			valid = true;
 		} else {
-			
 			throw new Exception("Os parâmetros {nome} e {endereco} devem ser devidamente informados.");
+		}
+
+		return valid;
+	}
+
+	public void updateRestaurante(Restaurante restaurante) throws Exception {
+		if (isValid(restaurante)) {
+			this.restauranteDao.update(restaurante);
+		}
+	}
+
+	public void insertRestaurante(Restaurante restaurante) throws Exception {
+		if (isValid(restaurante)) {
+			this.restauranteDao.insert(restaurante);
 		}
 	}
 }

@@ -22,9 +22,10 @@ public class VotoFuncionarioDao {
 			private static final long serialVersionUID = 1L;
 			
 			{
-				put(1, new VotoFuncionario(1, 1, "2017-06-01"));
-				put(2, new VotoFuncionario(2, 1, "2017-06-01"));
-				put(3, new VotoFuncionario(3, 2, "2017-06-01"));
+				// Fake data
+				// put(1, new VotoFuncionario(1, 1, "2017-06-01"));
+				// put(2, new VotoFuncionario(2, 1, "2017-06-01"));
+				// put(3, new VotoFuncionario(3, 2, "2017-06-01"));
 			}
 		};
 	}

@@ -38,7 +38,7 @@ public class RestauranteController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Collection<Restaurante> uptadeRestaurante(@RequestBody Restaurante restaurante) {
+	public Collection<Restaurante> uptadeRestaurante(@RequestBody Restaurante restaurante) throws Exception {
 		
 		restauranteService.updateRestaurante(restaurante);
 		return getAllRestaurantes();

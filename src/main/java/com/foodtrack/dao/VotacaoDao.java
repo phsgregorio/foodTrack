@@ -23,7 +23,6 @@ public class VotacaoDao {
 			private static final long serialVersionUID = 1L;
 			
 			{
-				// TODO pedro.gregorio inject fake data here
 			}
 		};
 	}
@@ -35,10 +34,14 @@ public class VotacaoDao {
 	/**
 	 * Verify if the given Restaurante was chosen in the past week
 	 * @param restaurante
+	 * @param data 
 	 * @return
 	 */
-	public boolean isRestauranteJaEscolhido(Restaurante restaurante) {
-		// TODO pedro.gregorio Implementar
+	public boolean isRestauranteJaEscolhido(Restaurante restaurante, String data) {
+		
+		// Devo conferir se o restaurante já foi o mais votado nos últimos sete dias
+		// Para isso devo converter a data para algum formato(fazer um for) e olhar se nos sete dias anteriores ele foi escolhido
+		
 		return false;
 	}
 	
@@ -59,7 +62,7 @@ public class VotacaoDao {
 			for (int i = 1; i < votosDia.size(); i++) {
 				
 				if (votosDia.get(i).getNumeroVotos() > votosDia.get(escolhido).getNumeroVotos() && 
-						!isRestauranteJaEscolhido(votosDia.get(i).getRestaurante())) {
+						!isRestauranteJaEscolhido(votosDia.get(i).getRestaurante(), data)) {
 					escolhido = i;
 				}
 			}

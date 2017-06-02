@@ -34,7 +34,6 @@ public class VotoFuncionarioController {
 
 		votoFuncionarioService.insertVotoFuncionario(votoFuncionario);
 		
-		// Updating Votacao Entity
 		votacaoService.insertVotacao(votoFuncionario);
 
 		return getAllByDate(votoFuncionario.getDataVotacao());

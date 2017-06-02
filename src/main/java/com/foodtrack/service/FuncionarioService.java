@@ -34,11 +34,15 @@ public class FuncionarioService {
 		this.funcionarioDao.removeById(id);
 	}
 	
-	public void updateFuncionario(Funcionario funcionario) {
-		this.funcionarioDao.update(funcionario);
-	}
-
-	public void insertFuncionario(Funcionario funcionario) throws Exception {
+	/**
+	 * Check Funcionario data
+	 * @param funcionario
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean isValid(Funcionario funcionario) throws Exception {
+		
+		boolean valid = false;
 		
 		if (!StringUtils.isEmpty(funcionario.getNome()) && 
 				!StringUtils.isEmpty(funcionario.getAtivo())) {
@@ -46,17 +50,30 @@ public class FuncionarioService {
 			if (Funcionario.ATIVO.equals(funcionario.getAtivo()) || 
 					Funcionario.INATIVO.equals(funcionario.getAtivo())) {
 				
-				// Inserts data
-				this.funcionarioDao.insert(funcionario);
-			
+				valid = true;
+
 			} else {
 				
-				throw new Exception("O valor informado para o parâmetro {ativo}(" + funcionario.getAtivo() + ") não é válido. "
+				throw new Exception("O valor informado para o parametro {ativo}(" + funcionario.getAtivo() + ") não é válido. "
 						+ "Preencher com um dos valores (\"" + Funcionario.ATIVO + "\", \"" + Funcionario.INATIVO + "\"). ");
 			}
 		} else {
 			
-			throw new Exception("Os parâmetros {nome} e {ativo} devem ser devidamente informados");
+			throw new Exception("Os parametros {nome} e {ativo} devem ser devidamente informados");
+		}
+		
+		return valid;
+	}
+	
+	public void updateFuncionario(Funcionario funcionario) throws Exception {
+		if (isValid(funcionario)) {
+			this.funcionarioDao.update(funcionario);
+		}
+	}
+
+	public void insertFuncionario(Funcionario funcionario) throws Exception {
+		if (isValid(funcionario)) {
+			this.funcionarioDao.insert(funcionario);
 		}
 	}
 }

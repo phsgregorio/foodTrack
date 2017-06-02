@@ -40,7 +40,7 @@ public class FuncionarioController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Collection<Funcionario> uptadeFuncionario(@RequestBody Funcionario funcionario) {
+	public Collection<Funcionario> uptadeFuncionario(@RequestBody Funcionario funcionario) throws Exception {
 		
 		funcionarioService.updateFuncionario(funcionario);
 		return getAllFuncionarios();

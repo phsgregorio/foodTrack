@@ -38,10 +38,10 @@ public class VotoFuncionarioService {
 			if (votadoAnteriormente==null) {
 				this.votoFuncionarioDao.insert(votoFuncionario);
 			} else {
-				throw new Exception("Funcionário já votou anteriormente");
+				throw new Exception("Funcionario votou anteriormente.");
 			}
 		} else {
-			throw new Exception("Funcionário está desativado no momento");
+			throw new Exception("Funcionario desativado.");
 		}
 	}
 }

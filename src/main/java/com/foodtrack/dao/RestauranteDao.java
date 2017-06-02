@@ -22,9 +22,10 @@ public class RestauranteDao implements GenericDao<Restaurante> {
 			private static final long serialVersionUID = 1L;
 
 			{
-				put(1, new Restaurante(1, "San Ro", "Rua Professor Moraes"));
-				put(2, new Restaurante(2, "Yan Shan Zai", "Avenida Getulio Vargas"));
-				put(3, new Restaurante(3, "Autentica", "Rua Alagoas"));
+				// Fake data
+				// put(1, new Restaurante(1, "San Ro", "Rua Professor Moraes"));
+				// put(2, new Restaurante(2, "Yan Shan Zai", "Avenida Getulio Vargas"));
+				// put(3, new Restaurante(3, "Autentica", "Rua Alagoas"));
 			}
 		};
 	}

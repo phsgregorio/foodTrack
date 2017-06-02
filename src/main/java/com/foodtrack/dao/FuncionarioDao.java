@@ -22,9 +22,10 @@ public class FuncionarioDao implements GenericDao<Funcionario> {
 			private static final long serialVersionUID = 1L;
 
 			{
-				put(1, new Funcionario(1, "Pedro", "ativo"));
-				put(2, new Funcionario(2, "Henrique", "inativo"));
-				put(3, new Funcionario(3, "Luiz", "ativo"));
+				// Fake Data
+				// put(1, new Funcionario(1, "Pedro", "ativo"));
+				// put(2, new Funcionario(2, "Henrique", "inativo"));
+				// put(3, new Funcionario(3, "Luiz", "ativo"));
 			}
 		};
 	}
