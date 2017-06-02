@@ -2,7 +2,6 @@ package com.foodtrack.ws.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
 import org.junit.After;
 import org.junit.Assert;
