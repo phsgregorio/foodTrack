@@ -33,13 +33,7 @@ public class FuncionarioService {
 	public void removeFuncionarioById(int id) {
 		this.funcionarioDao.removeById(id);
 	}
-	
-	/**
-	 * Check Funcionario data
-	 * @param funcionario
-	 * @return
-	 * @throws Exception
-	 */
+
 	public boolean isValid(Funcionario funcionario) throws Exception {
 		
 		boolean valid = false;

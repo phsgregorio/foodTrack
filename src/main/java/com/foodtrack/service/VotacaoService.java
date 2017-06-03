@@ -81,7 +81,7 @@ public class VotacaoService {
 		}
 		
 		if (restaurante==null) {
-			throw new Exception("Nenhum restaurante foi escolhido para o dia " + data + " ou ele já foi escolhido durante a semana.");
+			throw new Exception("Nenhuma votação ocorreu para o dia " + data + " ou todos os restaurantes votados já foram escolhidos durante a semana.");
 		}
 
 		return restaurante;

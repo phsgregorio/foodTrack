@@ -13,7 +13,7 @@ import com.foodtrack.dao.VotoFuncionarioDao;
 import com.foodtrack.entity.VotoFuncionario;
 
 /**
- * Funcionario Business Logic 
+ * VotoFuncionario Business Logic 
  * @author pedro.gregorio
  *
  */
@@ -28,10 +28,20 @@ public class VotoFuncionarioService {
 		return this.votoFuncionarioDao.getAll();
 	}
 	
+	/**
+	 * Retorna todos os votos para a data informada
+	 * @param data
+	 * @return
+	 */
 	public Collection<VotoFuncionario> getAllByDate(String data) {
 		return votoFuncionarioDao.getAllByDate(data);
 	}
 
+	/**
+	 * Serviço para inserção de um novo voto de funcionário
+	 * @param votoFuncionario
+	 * @throws Exception
+	 */
 	public void insertVotoFuncionario(VotoFuncionario votoFuncionario) throws Exception {
 		
 		if (StringUtils.isEmpty(votoFuncionario.getDataVotacao())) {

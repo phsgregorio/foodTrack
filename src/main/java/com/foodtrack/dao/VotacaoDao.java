@@ -13,6 +13,11 @@ import com.foodtrack.entity.Restaurante;
 import com.foodtrack.entity.Votacao;
 import com.foodtrack.util.DateUtils;
 
+/**
+ * 
+ * @author pedro.gregorio
+ *
+ */
 @Repository
 @Qualifier("fake")
 public class VotacaoDao {
@@ -25,7 +30,7 @@ public class VotacaoDao {
 			private static final long serialVersionUID = 1L;
 			
 			{
-				// Fake data
+				// Fake test data
 //				 put(1, new Votacao(1, 1, 3, "2017-06-01"));
 //				 put(2, new Votacao(2, 2, 2, "2017-06-01"));
 //				 put(3, new Votacao(3, 3, 5, "2017-06-01"));
@@ -33,15 +38,27 @@ public class VotacaoDao {
 		};
 	}
 
+	/**
+	 * Inclui uma nova votação
+	 * @param votacao
+	 */
 	public void insert(Votacao votacao) {
 		votacoes.put(votacao.getId(), votacao);
 	}
 
+	/**
+	 * Atualiza uma votação
+	 * @param votacao
+	 */
 	public void update(Votacao votacao) {
 		votacoes.put(votacao.getId(), votacao);
 		
 	}
 
+	/**
+	 * Retorna o último indíce(máximo) disponível
+	 * @return
+	 */
 	public int getLastId() {
 
 		int lastIndex = 0;
@@ -85,7 +102,7 @@ public class VotacaoDao {
 	}
 	
 	/**
-	 * Return all Restaurante Votos by day
+	 * Retorna todos as Votacoes por data
 	 * @param data
 	 * @return
 	 */

@@ -37,6 +37,33 @@ public class RestauranteController {
 		return getAllRestaurantes();
 	}
 	
+	/**
+	 * Serviço responsável pelo retorno da lista de restaurantes da aplicação.
+	 * O serviço retorna um JSON com a estrutura da lista de Restaurantes.
+	 * 
+	 * Exemplo de requisição:
+	 * http://localhost:8080/foodtrack/restaurantes
+	 * 
+	 * Retorno:
+	 * 
+	 * [
+	 *   {
+	 *     "id": 1,
+	 *     "nome": "San Ro",
+	 *     "endereco": "Rua Professor Moraes"
+	 *   },
+	 *   {
+	 *     "id": 2,
+	 *     "nome": "Yan Shan Zai",
+	 *     "endereco": "Avenida Getulio Vargas"
+	 *   },
+	 *   ...
+	 * ]
+	 * 
+	 * @param restaurante
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Collection<Restaurante> uptadeRestaurante(@RequestBody Restaurante restaurante) throws Exception {
 		
@@ -44,6 +71,27 @@ public class RestauranteController {
 		return getAllRestaurantes();
 	}
 	
+	/**
+	 * Serviço responsável pela inserção de um novo restaurante.
+	 * O serviço consome um json como entrada conténdo as informações do restaurante.
+	 * 
+	 * @param Restaurante restaurante
+	 * 
+	 * Exemplo de requisição:
+	 * http://localhost:8080/foodtrack/restaurantes
+	 * 
+	 * POST(application/json)
+	 * 
+	 * {
+	 *     "id": 4,
+	 *     "nome": "Piu Pane",
+	 *     "endereco": "Rua Professor Moraes"
+	 * }
+	 * 
+	 * @param restaurante
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Collection<Restaurante> insertRestaurante(@RequestBody Restaurante restaurante) throws Exception {
 		

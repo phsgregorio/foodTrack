@@ -10,6 +10,11 @@ import org.springframework.stereotype.Repository;
 
 import com.foodtrack.entity.VotoFuncionario;
 
+/**
+ * 
+ * @author pedro.gregorio
+ *
+ */
 @Repository
 @Qualifier("fake")
 public class VotoFuncionarioDao {
@@ -22,7 +27,7 @@ public class VotoFuncionarioDao {
 			private static final long serialVersionUID = 1L;
 			
 			{
-				// Fake data
+				// Fake test data
 //				 put(1, new VotoFuncionario(1, 1, "2017-06-01"));
 //				 put(2, new VotoFuncionario(2, 1, "2017-06-01"));
 //				 put(3, new VotoFuncionario(3, 3, "2017-06-01"));
@@ -37,10 +42,19 @@ public class VotoFuncionarioDao {
 		};
 	}
 
+	/**
+	 * Retorna todos os votos de funcionários
+	 * @return
+	 */
 	public Collection<VotoFuncionario> getAll() {
 		return votoFuncionarios.values();
 	}
 	
+	/**
+	 * Retorna todos os votos de funcionários para a data informada
+	 * @param data
+	 * @return
+	 */
 	public Collection<VotoFuncionario> getAllByDate(String data) {
 		
 		Collection<VotoFuncionario> votosDoDia = new ArrayList<VotoFuncionario>();
@@ -55,10 +69,12 @@ public class VotoFuncionarioDao {
 		return votosDoDia;
 	}
 
-	public void insert(VotoFuncionario votoFuncionario) {
-		votoFuncionarios.put(votoFuncionario.getIdFuncionario(), votoFuncionario);
-	}
-
+	/**
+	 * Retorna o voto do funcionário dado a data informada
+	 * @param idFuncionario
+	 * @param dataVotacao
+	 * @return
+	 */
 	public VotoFuncionario retrieveVotoFuncionarioByDate(int idFuncionario, String dataVotacao) {
 
 		VotoFuncionario retorno = null;
@@ -71,5 +87,13 @@ public class VotoFuncionarioDao {
 		}
 	
 		return retorno;
+	}
+	
+	/**
+	 * Insere um novo voto de funcionário na memória
+	 * @param votoFuncionario
+	 */
+	public void insert(VotoFuncionario votoFuncionario) {
+		votoFuncionarios.put(votoFuncionario.getIdFuncionario(), votoFuncionario);
 	}
 }

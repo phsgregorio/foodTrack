@@ -20,6 +20,31 @@ public class FuncionarioController {
 	@Autowired
 	private FuncionarioService funcionarioService;
 
+	/**
+	 * Serviço responsável pelo retorno da lista de funcionários da aplicação.
+	 * O serviço retorna um JSON com a estrutura da lista de Funcionarios.
+	 * 
+	 * Exemplo de requisição:
+	 * http://localhost:8080/foodtrack/funcionarios
+	 * 
+	 * Retorno:
+	 * 
+	 * [
+	 *   {
+	 *     "id": 1,
+	 *     "nome": "Pedro",
+	 *     "ativo": "ativo"
+	 *   },
+	 *   {
+	 *     "id": 2,
+	 *     "nome": "Henrique Diniz",
+	 *     "ativo": "ativo"
+	 *   },
+	 *   ...
+	 * ]
+	 * 
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public Collection<Funcionario> getAllFuncionarios() {
 		
@@ -38,7 +63,7 @@ public class FuncionarioController {
 		funcionarioService.removeFuncionarioById(id);
 		return getAllFuncionarios();
 	}
-	
+
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Collection<Funcionario> uptadeFuncionario(@RequestBody Funcionario funcionario) throws Exception {
 		
@@ -46,6 +71,27 @@ public class FuncionarioController {
 		return getAllFuncionarios();
 	}
 	
+	/**
+	 * Serviço responsável pela inserção de um novo funcionário.
+	 * O serviço consome um json como entrada conténdo as informações do funcionário.
+	 * 
+	 * @param Funcionario funcionario
+	 * 
+	 * Exemplo de requisição:
+	 * http://localhost:8080/foodtrack/funcionarios
+	 * 
+	 * POST(application/json)
+	 * 
+	 * {
+	 *     "id": 15,
+	 *     "nome": "Roberto Carlos",
+	 *     "ativo": "inativo"
+	 * }
+	 * 
+	 * @param funcionario
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Collection<Funcionario> insertFuncionario(@RequestBody Funcionario funcionario) throws Exception {
 		

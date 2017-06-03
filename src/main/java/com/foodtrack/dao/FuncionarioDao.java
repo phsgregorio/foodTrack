@@ -9,6 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import com.foodtrack.entity.Funcionario;
 
+/**
+ * 
+ * @author pedro.gregorio
+ *
+ */
 @Repository
 @Qualifier("fake")
 public class FuncionarioDao implements GenericDao<Funcionario> {
