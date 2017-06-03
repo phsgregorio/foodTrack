@@ -1,10 +1,13 @@
 package com.foodtrack.service;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.foodtrack.dao.VotoFuncionarioDao;
 import com.foodtrack.entity.VotoFuncionario;
@@ -30,6 +33,11 @@ public class VotoFuncionarioService {
 	}
 
 	public void insertVotoFuncionario(VotoFuncionario votoFuncionario) throws Exception {
+		
+		if (StringUtils.isEmpty(votoFuncionario.getDataVotacao())) {
+			String dataHoje = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+			votoFuncionario.setDataVotacao(dataHoje);
+		}
 		
 		if (votoFuncionario.getFuncionario().isAtivo()) {
 

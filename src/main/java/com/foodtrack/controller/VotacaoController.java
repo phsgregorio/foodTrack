@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.foodtrack.entity.Restaurante;
 import com.foodtrack.entity.Votacao;
 import com.foodtrack.service.VotacaoService;
 
@@ -24,7 +25,7 @@ public class VotacaoController {
 	}
 
 	@RequestMapping(value="/{data}", method = RequestMethod.GET)
-	public Votacao getRestauranteDia(@PathVariable("data") String data) {
+	public Restaurante getRestauranteDia(@PathVariable("data") String data) throws Exception {
 		return votacaoService.getRestauranteDia(data);
 	}
 }

@@ -37,4 +37,15 @@ public class Restaurante {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		
+		Restaurante restaurante = (Restaurante) obj;
+
+		return restaurante!=null &&
+				this.getId() == restaurante.getId() &&
+				this.getNome().equals(restaurante.getNome()) &&
+				this.getEndereco().equals(restaurante.getEndereco());
+	}
 }

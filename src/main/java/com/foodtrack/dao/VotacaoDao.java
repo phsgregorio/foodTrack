@@ -1,5 +1,6 @@
 package com.foodtrack.dao;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.foodtrack.entity.Restaurante;
 import com.foodtrack.entity.Votacao;
+import com.foodtrack.util.DateUtils;
 
 @Repository
 @Qualifier("fake")
@@ -31,50 +33,43 @@ public class VotacaoDao {
 		};
 	}
 
+	public void insert(Votacao votacao) {
+		votacoes.put(votacao.getId(), votacao);
+	}
+
+	public void update(Votacao votacao) {
+		votacoes.put(votacao.getId(), votacao);
+		
+	}
+
+	public int getLastId() {
+
+		int lastIndex = 0;
+
+		for (Votacao votacao : votacoes.values()) {
+			
+			if (votacao.getId() > lastIndex) {
+				lastIndex = votacao.getId();
+			}
+		}
+
+		return lastIndex + 1;
+	}
+	
+	/**
+	 * Retorna todos os registros de votação
+	 * @return
+	 */
 	public Collection<Votacao> getAll() {
 		return votacoes.values();
 	}
 	
 	/**
-	 * Verify if the given Restaurante was chosen in the past week
-	 * @param restaurante
-	 * @param data 
-	 * @return
-	 */
-	public boolean isRestauranteJaEscolhido(Restaurante restaurante, String data) {
-		
-		// Devo conferir se o restaurante já foi o mais votado nos últimos sete dias
-		// Para isso devo converter a data para algum formato(fazer um for) e olhar se nos sete dias anteriores ele foi escolhido
-		
-		return false;
-	}
-	
-	/**
-	 * Returns the chosen restaurant for a day
+	 * Retorna os dados da votação de um restaurante para a data informada.
+	 * @param idRestaurante
 	 * @param data
 	 * @return
 	 */
-	public Votacao getRestauranteDia(String data) {
-		
-		ArrayList<Votacao> votosDia = (ArrayList<Votacao>) getAllByDate(data);
-		Integer escolhido = -1;
-
-		if (votosDia.size()>0) {
-			
-			escolhido = 0;
-			
-			for (int i = 1; i < votosDia.size(); i++) {
-				
-				if (votosDia.get(i).getNumeroVotos() > votosDia.get(escolhido).getNumeroVotos() && 
-						!isRestauranteJaEscolhido(votosDia.get(i).getRestaurante(), data)) {
-					escolhido = i;
-				}
-			}
-		}
-
-		return escolhido==-1 ? null : votosDia.get(escolhido);
-	}
-	
 	public Votacao getVotacaoByRestauranteData(int idRestaurante, String data) {
 		
 		Votacao retorno = null;
@@ -107,27 +102,56 @@ public class VotacaoDao {
 
 		return votosDoDia;
 	}
+	
+	/**
+	 * Retorna os restaurantes escolhidos durante a semana da data informada
+	 * @param data 
+	 * @return
+	 * @throws ParseException 
+	 */
+	public HashMap<String, Restaurante> getRestaurantesSemana(String data) throws ParseException {
 
-	public void insert(Votacao votacao) {
-		votacoes.put(votacao.getId(), votacao);
-	}
+		ArrayList<String> diasDaSemana = DateUtils.getDaysOfWeek(data);
+		ArrayList<Restaurante> restaurantesEscolhidos = new ArrayList<Restaurante>();
+		HashMap<String, Restaurante> restaurantePorDiaDaSemana = new HashMap<String, Restaurante>();
 
-	public void update(Votacao votacao) {
-		votacoes.put(votacao.getId(), votacao);
-		
-	}
+		for (String dataDia : diasDaSemana) {
 
-	public int getLastId() {
-
-		int lastIndex = 0;
-
-		for (Votacao votacao : votacoes.values()) {
+			// Recupero a votação de cada dia, para verificar qual foi o restaurante escolhido
+			ArrayList<Votacao> votosDosRestaurantePorDia = (ArrayList<Votacao>) getAllByDate(dataDia);
+			Votacao escolhido = new Votacao();
 			
-			if (votacao.getId() > lastIndex) {
-				lastIndex = votacao.getId();
+			if (votosDosRestaurantePorDia.size()>0) {
+
+				for (Votacao votosDoRestauranteNoDia : votosDosRestaurantePorDia) {
+					
+					// Se não estiver na lista de escolhidos e tiver mais votos que o anterior, troco o Restaurante escolhido
+					Restaurante restaurante = votosDoRestauranteNoDia.getRestaurante();
+					if (restaurantesEscolhidos.indexOf(restaurante)==-1 &&
+							votosDoRestauranteNoDia.getNumeroVotos() > escolhido.getNumeroVotos()) {
+
+						escolhido = votosDoRestauranteNoDia;
+					}
+				}
 			}
+
+			// If none be chosed it will return null value
+			restaurantesEscolhidos.add(escolhido.getRestaurante());
+			restaurantePorDiaDaSemana.put(dataDia, escolhido.getRestaurante());
 		}
 
-		return lastIndex + 1;
+		return restaurantePorDiaDaSemana;
+	}
+	
+	/**
+	 * Retorna o restaurante escolhido para a data informada levando em consideração restaurantes escolhidos durante a semana.
+	 * @param data
+	 * @return
+	 * @throws ParseException 
+	 */
+	public Restaurante getRestauranteDia(String data) throws ParseException {
+
+		HashMap<String, Restaurante> restaurantesDaSemana = getRestaurantesSemana(data);
+		return restaurantesDaSemana.get(data);
 	}
 }

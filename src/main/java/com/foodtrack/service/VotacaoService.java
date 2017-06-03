@@ -1,10 +1,15 @@
 package com.foodtrack.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.foodtrack.dao.VotacaoDao;
 import com.foodtrack.entity.Restaurante;
@@ -31,20 +36,79 @@ public class VotacaoService {
 		return votacaoDao.getAllByDate(data);
 	}
 	
-	public boolean isRestauranteJaEscolhido(Restaurante restaurante, String data) {
-		return votacaoDao.isRestauranteJaEscolhido(restaurante, data);
+	/**
+	 * Confere se o restaurante informado foi escolhido durante a semana
+	 * @param restaurante
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean isRestauranteJaEscolhido(Restaurante restaurante, String data) throws Exception {
+		
+		boolean jaEscolhido = false;
+
+		try {
+			
+			HashMap<String, Restaurante> restaurantes = votacaoDao.getRestaurantesSemana(data);
+			
+			for (Restaurante restauranteEscolhido : restaurantes.values()) {
+				
+				if (restauranteEscolhido!=null && restauranteEscolhido.equals(restaurante)) {
+					jaEscolhido = true;
+				}
+			}
+		} catch (ParseException e) {
+			throw new Exception("Falha ao recuperar restaurantes, favor conferir o parâmetro {data} informado.");
+		}
+		
+		return jaEscolhido;
 	}
 	
-	public Votacao getRestauranteDia(String data) {
-		return votacaoDao.getRestauranteDia(data);
+	/**
+	 * Recupera o restaurante escolhido de acordo com a votação e as escolhas anteriores da semana.
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public Restaurante getRestauranteDia(String data) throws Exception{
+		
+		Restaurante restaurante = null;
+		
+		try {
+			restaurante = votacaoDao.getRestauranteDia(data);
+		} catch (ParseException e) {
+			throw new Exception("Falha ao recuperar restaurantes, favor conferir o parâmetro {data} informado.");
+		}
+		
+		if (restaurante==null) {
+			throw new Exception("Nenhum restaurante foi escolhido para o dia " + data + " ou ele já foi escolhido durante a semana.");
+		}
+
+		return restaurante;
 	}
 	
+	/**
+	 * Retorna o resultado da votação de um restaurante para a data informada
+	 * @param idRestaurante
+	 * @param data
+	 * @return
+	 */
 	public Votacao getVotacaoByRestauranteData(int idRestaurante, String data) {
 		return votacaoDao.getVotacaoByRestauranteData(idRestaurante, data);
 	}
 
+	/**
+	 * Inseri ou atualiza a pontuação de um restaurante após o voto de um funcionário
+	 * @param votoFuncionario
+	 * @throws Exception
+	 */
 	public void insertVotacao(VotoFuncionario votoFuncionario) throws Exception {
 
+		if (StringUtils.isEmpty(votoFuncionario.getDataVotacao())) {
+			String dataHoje = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+			votoFuncionario.setDataVotacao(dataHoje);
+		}
+		
 		if (votoFuncionario.getRestaurante()!=null && votoFuncionario.getDataVotacao()!=null) {
 			
 			Votacao votacao = getVotacaoByRestauranteData(votoFuncionario.getIdRestaurante(), votoFuncionario.getDataVotacao());

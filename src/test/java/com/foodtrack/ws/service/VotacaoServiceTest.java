@@ -130,8 +130,8 @@ public class VotacaoServiceTest extends AbstractTest{
 		Assert.assertEquals("O número de votos do restaurante TesteRestaurante{21} deveria ser 5", 3, votosPorRestaurante.get(1).getNumeroVotos());
 		Assert.assertEquals("O número de votos do restaurante TesteRestaurante{22} deveria ser 5", 2, votosPorRestaurante.get(2).getNumeroVotos());
 		
-		Votacao votacaoRestauranteDia = votacaoService.getRestauranteDia(data);
-		System.out.println(votacaoRestauranteDia.getRestaurante().getNome()+ ", " + votacaoRestauranteDia.getRestaurante().getEndereco() + ", " + data);
+		Restaurante restaurante = votacaoService.getRestauranteDia(data);
+		System.out.println(restaurante.getNome()+ ", " + restaurante.getEndereco() + ", " + data);
 	}
 	
 	@Test

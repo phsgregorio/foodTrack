@@ -60,7 +60,7 @@ public class Votacao {
 
 	public Restaurante getRestaurante() {
 
-		if (restaurante==null) {
+		if (restaurante==null && idRestaurante!=0) {
 			RestauranteDao restauranteDao = new RestauranteDao();
 			setRestaurante(restauranteDao.getById(idRestaurante));
 		}
