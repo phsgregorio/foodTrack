@@ -7,14 +7,14 @@ Foodtrack é uma pequena aplicação para votação de restaurantes. A aplicaç�
 O link para o projeto está disponibilizado no https://github.com/phsgregorio/foodTrack. O projeto pode ser baixado repositório para versão de desenvolvimento ou pode ser
 baixado ser jar que inicializa com auxílio do Spring Boot os serviços pelo prompt de comando do sistema operacional. Aqui cobriremos apenas a utilização da aplicação pelo jar.
 
-### Prerequisites
+### Pré-Requisitos
 
 Um ambiente de execução de Java 8 deve estar disponível na máquina que irá hospedar o serviço.
 Você pode baixar um ambiente adequado no segunte link:
 
 * [http://www.oracle.com/technetwork/pt/java/javase/downloads/jre8-downloads-2133155.html] - Oracle Java Runtime Environment
 
-### Installing
+### Instalação
 
 Para fazer a instalação do aplicativo(ou iniciar os serviços disponíveis) confira se o Java está no Classpath do seu computador.
 Após isso abra o prompt de comando do seu sistema operacional. Então execute o seguinte comando:
