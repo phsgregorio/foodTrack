@@ -20,23 +20,6 @@ public class RestauranteController {
 	@Autowired
 	private RestauranteService restauranteService;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public Collection<Restaurante> getAllRestaurantes() {
-		return restauranteService.getAllRestaurantes();
-	}
-	
-	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public Restaurante getRestauranteById(@PathVariable("id") int id) {
-		return restauranteService.getRestauranteById(id);
-	}
-	
-	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
-	public Collection<Restaurante> deleteRestauranteById(@PathVariable("id") int id) {
-		
-		restauranteService.removeRestauranteById(id);
-		return getAllRestaurantes();
-	}
-	
 	/**
 	 * Serviço responsável pelo retorno da lista de restaurantes da aplicação.
 	 * O serviço retorna um JSON com a estrutura da lista de Restaurantes.
@@ -60,10 +43,25 @@ public class RestauranteController {
 	 *   ...
 	 * ]
 	 * 
-	 * @param restaurante
 	 * @return
-	 * @throws Exception
 	 */
+	@RequestMapping(method = RequestMethod.GET)
+	public Collection<Restaurante> getAllRestaurantes() {
+		return restauranteService.getAllRestaurantes();
+	}
+	
+	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	public Restaurante getRestauranteById(@PathVariable("id") int id) {
+		return restauranteService.getRestauranteById(id);
+	}
+	
+	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+	public Collection<Restaurante> deleteRestauranteById(@PathVariable("id") int id) {
+		
+		restauranteService.removeRestauranteById(id);
+		return getAllRestaurantes();
+	}
+
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Collection<Restaurante> uptadeRestaurante(@RequestBody Restaurante restaurante) throws Exception {
 		
