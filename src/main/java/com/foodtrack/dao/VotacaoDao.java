@@ -26,9 +26,9 @@ public class VotacaoDao {
 			
 			{
 				// Fake data
-				 put(1, new Votacao(1, 1, 3, "2017-06-01"));
-				 put(2, new Votacao(2, 2, 2, "2017-06-01"));
-				 put(3, new Votacao(3, 3, 5, "2017-06-01"));
+//				 put(1, new Votacao(1, 1, 3, "2017-06-01"));
+//				 put(2, new Votacao(2, 2, 2, "2017-06-01"));
+//				 put(3, new Votacao(3, 3, 5, "2017-06-01"));
 			}
 		};
 	}

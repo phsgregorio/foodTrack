@@ -23,16 +23,16 @@ public class FuncionarioDao implements GenericDao<Funcionario> {
 
 			{
 				// Fake Data
-				 put(1, new Funcionario(1, "Pedro", Funcionario.ATIVO));
-				 put(2, new Funcionario(2, "Henrique Diniz", Funcionario.ATIVO));
-				 put(3, new Funcionario(3, "Luiz Henrique", Funcionario.ATIVO));
-				 put(4, new Funcionario(4, "Wilson Alencar", Funcionario.ATIVO));
-				 put(5, new Funcionario(5, "Rafael Barreto", Funcionario.ATIVO));
-				 put(6, new Funcionario(6, "Andre Alencar", Funcionario.ATIVO));
-				 put(7, new Funcionario(7, "Priscila Alencar", Funcionario.ATIVO));
-				 put(8, new Funcionario(8, "Adriane", Funcionario.ATIVO));
-				 put(9, new Funcionario(9, "Socorro", Funcionario.ATIVO));
-				 put(10, new Funcionario(10, "Rafael", Funcionario.ATIVO));
+//				 put(1, new Funcionario(1, "Pedro", Funcionario.ATIVO));
+//				 put(2, new Funcionario(2, "Henrique Diniz", Funcionario.ATIVO));
+//				 put(3, new Funcionario(3, "Luiz Henrique", Funcionario.ATIVO));
+//				 put(4, new Funcionario(4, "Wilson Alencar", Funcionario.ATIVO));
+//				 put(5, new Funcionario(5, "Rafael Barreto", Funcionario.ATIVO));
+//				 put(6, new Funcionario(6, "Andre Alencar", Funcionario.ATIVO));
+//				 put(7, new Funcionario(7, "Priscila Alencar", Funcionario.ATIVO));
+//				 put(8, new Funcionario(8, "Adriane", Funcionario.ATIVO));
+//				 put(9, new Funcionario(9, "Socorro", Funcionario.ATIVO));
+//				 put(10, new Funcionario(10, "Rafael", Funcionario.ATIVO));
 			}
 		};
 	}
